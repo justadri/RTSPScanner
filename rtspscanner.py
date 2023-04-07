@@ -91,6 +91,7 @@ class RTSPScanner:
                 self.portscan.q.not_full.notify_all()
         #if self.verbose:
             #print(results)
+        flaky = []
         for result in results:
             if result:
                 for path in self.paths:
@@ -102,7 +103,6 @@ class RTSPScanner:
                             print(status)
                         snapshot = f"/tmp/test.png"
                         thumbnail = f"/tmp/test.webp"
-                        flaky = []
                         command = ['ffmpeg', '-y', '-frames', '1', snapshot, '-rtsp_transport', 'tcp', '-i', rtsp]
                         for x in range(0,self.retries):
                             try:
